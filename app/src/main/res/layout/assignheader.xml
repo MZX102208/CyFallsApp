@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="5dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#727272"
+        android:id="@+id/headerclass"
+
+        android:text="Class"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#727272"
+        android:id="@+id/headergade"
+        android:text="Grade"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/headerteach"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="#727272"
+        android:layout_gravity="center_horizontal"
+        android:text="teacher"
+        />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/roomnumber"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:textColor="#727272"
+            android:text="Room#:"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#727272"
+            android:autoLink="email"
+            android:textColorLink="#0000EE"
+            android:layout_marginTop="10dp"
+            android:id="@+id/email"
+            android:gravity="center_horizontal"
+            android:text="email:"
+            />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+
+        android:weightSum="2"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#727272"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/averagename"
+            android:text="Averagename"
+            android:gravity="right"
+            android:textStyle="bold"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#727272"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/averageav"
+            android:textStyle="bold"
+            android:text="Average grade"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

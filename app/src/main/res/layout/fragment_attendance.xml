@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_marginBottom="20dp"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#727272"
+        android:text="Absences:"
+        android:id="@+id/textView12"
+
+        android:textStyle="bold"
+        android:layout_above="@+id/listView3"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="30dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView3"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:textStyle="bold"
+        android:textColor="#727272"
+        android:id="@+id/textView8"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal" />
+
+
+
+
+</LinearLayout>

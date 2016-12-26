@@ -1,0 +1,56 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context="com.example.sriramhariharan.cyfallsapp2016.Schedule">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="It is now currently: "
+            android:id="@+id/schtitle1"
+            android:textSize="15dp"/>
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/periodd"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp"
+            android:textSize="20dp"
+            android:text="period"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15dp"
+            android:layout_marginBottom="2dp"
+            android:id="@+id/schtitle2"
+            android:text="Normal Bell Schedule"
+            />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/schtitle2"
+            android:id="@+id/fullschedule"
+            >
+        </ListView>
+    </LinearLayout>
+</FrameLayout>

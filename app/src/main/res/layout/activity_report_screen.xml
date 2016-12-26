@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_report_screen"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.sriramhariharan.cyfallsapp2016.ReportScreen">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbarreport"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:title="Assignments"
+        android:titleTextColor="#fff"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/reportscreenlin"
+        android:layout_below="@id/my_toolbarreport">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="#727272"
+            android:id="@+id/reportscreensclass"
+
+            android:text="Class"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/reportscreenteacher"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="#727272"
+            android:layout_gravity="center_horizontal"
+            android:text="teacher"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reportscreenroomnum"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textColor="#727272"
+            android:text="Room#:"
+            />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:id="@+id/reportscreenlist"
+        android:layout_height="wrap_content">
+
+
+
+    </ListView>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

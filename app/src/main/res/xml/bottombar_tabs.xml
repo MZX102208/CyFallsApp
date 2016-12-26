@@ -1,0 +1,20 @@
+<tabs>
+    <tab
+        id="@+id/tab_grades"
+        icon="@drawable/ic_school_black_24dp"
+        title="Grades" />
+    <tab
+        id="@+id/tab_schedule"
+        icon="@drawable/ic_schedule_black_24dp"
+        title="Schedule" />
+
+    <tab
+        id="@+id/tab_reportcard"
+        icon="@drawable/ic_stars_black_24dp"
+        title="Report Card" />
+    <tab
+        id="@+id/tab_attendance"
+        icon="@drawable/ic_library_books_black_24dp"
+        title="Attendance"
+        />
+</tabs>
