@@ -27,6 +27,8 @@ public class ClssPkg implements Serializable{
     String absString = "";
     String name;
     ArrayList<Course> classes = new ArrayList<Course>();
+    ArrayList<String> schedulesem1 = new ArrayList<String>();
+    ArrayList<String> schedulesem2 = new ArrayList<String>();
 
     public ClssPkg(String n) {
         name = n;
@@ -91,7 +93,15 @@ public class ClssPkg implements Serializable{
         for (Course c : classes) {
             ret += c.toString();
         }
-        ret += "{" + absString + "}"+"{"+lunch+"}";
+        ret += "{" + absString + "}";
+        ret += schedulesem1.size();
+        for(String s : schedulesem1){
+            ret+="{"+s+"}";
+        }
+        ret += "{"+schedulesem2.size();
+        for(String s : schedulesem2){
+            ret+="{"+s+"}";
+        }
         return ret;
     }
 
@@ -115,7 +125,14 @@ public class ClssPkg implements Serializable{
             clss.classes.add(c);
         }
         clss.addAbsences(s.next());
-        clss.lunch = s.next();
+        iter1 = s.nextInt();
+        for(int i=0;i<iter1;i++){
+            clss.schedulesem1.add(s.next());
+        }
+        iter1 = s.nextInt();
+        for(int i=0;i<iter1;i++){
+            clss.schedulesem2.add(s.next());
+        }
         return clss;
     }
     public static ClssPkg getFromServer(String user, String pass){
