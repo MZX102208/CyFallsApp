@@ -174,8 +174,9 @@ public class GradeCalc extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             return;
                         }
+                        String comments = "";
 
-                        assignments.add(0, new Assignment("", editname.getText().toString(), type, editgrade.getText().toString(), edittotal.getText().toString()));
+                        assignments.add(0, new Assignment("", editname.getText().toString(), type, editgrade.getText().toString(), edittotal.getText().toString(),""));
                         ca.notifyDataSetChanged();
                         update();
                         int num = 1;
@@ -308,8 +309,8 @@ public class GradeCalc extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             return;
                         }
-
-                        assignments.set(position, new Assignment("", editname.getText().toString(), type, editgrade.getText().toString(), edittotal.getText().toString()));
+                        String commnets = "";
+                        assignments.set(position, new Assignment("", editname.getText().toString(), type, editgrade.getText().toString(), edittotal.getText().toString(),commnets));
                         ca.notifyDataSetChanged();
                         update();
                         int num = 1;

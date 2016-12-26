@@ -216,7 +216,7 @@ public class Course {
         Course c = new Course(s.next(), s.next(), s.next(), s.next(), s.next(), s.nextInt(), s.next(), s.next(), s.next(), s.next(), s.next(), s.next(), s.next(), s.next(), s.next(), s.next());
         int iter2 = s.nextInt();
         for (int j = 0; j < iter2; j++) {
-            Assignment a = new Assignment(s.next(), s.next(), s.next(), s.next(), s.next());
+            Assignment a = new Assignment(s.next(), s.next(), s.next(), s.next(), s.next(),s.next());
             c.addAssign(a);
         }
         iter2 = s.nextInt();

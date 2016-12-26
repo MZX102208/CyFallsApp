@@ -31,4 +31,27 @@ class Assignment {
         return ret;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getDuedate() {
+        return duedate;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public String getTotalscore() {
+        return totalscore;
+    }
+
+    public String getType() {
+        return type;
+    }
 }

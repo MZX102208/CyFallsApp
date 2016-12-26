@@ -41,6 +41,26 @@ public class ClssPkg implements Serializable{
         return null;
     }
 
+    public int[] getAbs() {
+        return abs;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLunch() {
+        return lunch;
+    }
+
+    public ArrayList<Course> getClasses() {
+        return classes;
+    }
+
+    public String getAbsString() {
+        return absString;
+    }
+
     public void addAssign(String n, Assignment a) {
         for (Course c : classes) {
             if (c.name.equals(n)) {
