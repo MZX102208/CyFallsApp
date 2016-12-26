@@ -3,6 +3,7 @@ package com.example.sriramhariharan.cyfallsapp2016;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -83,6 +85,8 @@ public class Grades extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -191,6 +195,7 @@ public class Grades extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.gradesmenu, menu);
@@ -201,13 +206,14 @@ public class Grades extends Fragment {
         }
 
         protected Void doInBackground(Void... params) {
-            while (Values.loaded == false && isInFront == false) {
+            while (Values.loaded == false) {
 
             }
             return null;
         }
 
         protected void onPostExecute(Void aVoid) {
+            showProg(false);
             yourListView.setAdapter(new CourseAdapter(rootview.getContext(), Values.courses));
         }
     }
@@ -223,6 +229,17 @@ public class Grades extends Fragment {
     public void onPause() {
         super.onPause();
         isInFront = false;
+    }
+
+    public void logOut() {
+        SharedPreferences settings = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(getContext(), Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finish();
     }
 
 
@@ -281,7 +298,6 @@ public class Grades extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             Values.loaded = true;
-
             for(int i = 0;i<Values.courses.size();i++){
                 if(Values.courses.get(i).getAssignments().size() == 0){
                     Values.courses.remove(i);
