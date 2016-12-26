@@ -58,6 +58,7 @@ public class AssignmentAdapter extends BaseAdapter {
         TextView assigncategory;
         TextView assigngrade;
         TextView assigntotalgrade;
+        TextView assigncomments;
         LinearLayout assigncolor;
     }
 
@@ -72,6 +73,7 @@ public class AssignmentAdapter extends BaseAdapter {
         holder.assigngrade = (TextView)rowView.findViewById(R.id.assigngrade);
         holder.assigntotalgrade = (TextView)rowView.findViewById(R.id.totalgrade);
         holder.assigncolor = (LinearLayout)rowView.findViewById(R.id.assigncolor);
+        holder.assigncomments = (TextView)rowView.findViewById(R.id.comments);
         String s = a.getName();
         if(s.length()>26){
             s=s.substring(0,26);
@@ -80,6 +82,13 @@ public class AssignmentAdapter extends BaseAdapter {
 
         holder.assignname.setText(s);
         holder.assigncategory.setText(a.getType());
+        if(a.getComment().equals("")){
+            holder.assigncomments.setVisibility(View.GONE);
+
+        }
+        else {
+            holder.assigncomments.setText(a.getComment());
+        }
         try {
             if (java.lang.Double.isNaN(Double.parseDouble(a.getGrade()))) {
                 holder.assigngrade.setText("-\t");
@@ -113,6 +122,7 @@ public class AssignmentAdapter extends BaseAdapter {
             holder.assigncolor.setBackgroundColor(Color.parseColor("#2196F3"));
 
         }
+
 
 
         return rowView;

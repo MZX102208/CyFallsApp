@@ -28,9 +28,13 @@ public class AssignmentScreen extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView lv = (ListView)findViewById(R.id.assignlist);
-        ArrayList<Assignment> assignments = Values.assignments;
+        ArrayList<Assignment> assignments = Values.PKG.classes.get(Values.Courseindex).assignments;
         lv.setAdapter(new AssignmentAdapter(this, assignments));
         lv.setPadding(0, 0, 0, 0);
+
+        for(Assignment a : assignments){
+            Log.e("COMMENTS",a.getComment()+"_");
+        }
 
         Course c = Values.assignedcourse;
 
@@ -45,6 +49,7 @@ public class AssignmentScreen extends AppCompatActivity {
         email.setText(c.getEmail());
         TextView averagename = (TextView)headerview.findViewById(R.id.averagename);
         TextView averageav = (TextView)headerview.findViewById(R.id.averageav);
+
 
         TextView clssgrade = (TextView)headerview.findViewById(R.id.headergade);
         clssgrade.setText(String.format("%.2f",c.getGrade()));

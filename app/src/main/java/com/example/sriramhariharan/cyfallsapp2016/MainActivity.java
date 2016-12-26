@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
         String lunch = Values.PKG.lunch;
         DateTime dt = new DateTime();
         int min = dt.getMinuteOfDay();
+
+
+
 
         if(min < 440)
             current = ("Before School");

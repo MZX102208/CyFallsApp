@@ -13,12 +13,13 @@ class Assignment {
     String totalscore;
     String comment = "";
 
-    public Assignment(String d, String n, String t, String g, String ts, String comment) {
+    public Assignment(String d, String n, String t, String g, String ts, String c) {
         duedate = d;
         name = n;
         type = t;
         grade = g;
         totalscore = ts;
+        comment = c;
     }
 
     public String toString() {
