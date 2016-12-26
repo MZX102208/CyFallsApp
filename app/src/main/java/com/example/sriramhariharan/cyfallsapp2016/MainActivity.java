@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String current = "";
-        String lunch = Values.PKG.lunch;
+  //      String lunch = Values.PKG.lunch;
         DateTime dt = new DateTime();
         int min = dt.getMinuteOfDay();
 
 
-
+/*
 
         if(min < 440)
             current = ("Before School");
@@ -80,12 +80,13 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             current =("After School");
         else
             current =("Passing Period");
+            */
         Values.current = current;
         ArrayList<TimSched> timesch = new ArrayList();
         timesch.add(new TimSched(Values.courses.get(0).getName(), "7:20 – 8:13",Values.courses.get(0).getRoomnum()));
         timesch.add(new TimSched(Values.courses.get(1).getName(), "8:19 – 9:15",Values.courses.get(1).getRoomnum()));
         timesch.add(new TimSched(Values.courses.get(2).getName(), "9:21 – 10:14",Values.courses.get(2).getRoomnum()));
-
+/*
         if (lunch.equals("A")) {
             timesch.add(new TimSched("A Lunch", "10:14 – 10:44","Cafeteria"));
             timesch.add(new TimSched(Values.courses.get(3).getName(), "10:50 – 11:43",Values.courses.get(3).getRoomnum()));
@@ -101,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             timesch.add(new TimSched(Values.courses.get(4).getName(), "11:19 – 12:12",Values.courses.get(4).getRoomnum()));
             timesch.add(new TimSched("C Lunch", "12:12 – 12:42","Cafeteria"));
         }
+
+        */
         timesch.add(new TimSched(Values.courses.get(5).getName(), "12:48 – 1:41",Values.courses.get(5).getRoomnum()));
         timesch.add(new TimSched(Values.courses.get(6).getName(), "1:47 – 2:40",Values.courses.get(6).getRoomnum()));
         Values.schedule = timesch;

@@ -42,6 +42,8 @@ public class Grades extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static ListView yourListView;
     private static View rootview;
+    public static ProgressTask pt;
+    public static UserGradesTask ug;
     private View mProgressView;
     private Button refr;
 
@@ -195,7 +197,22 @@ public class Grades extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    public boolean isInFront() {
+        return isInFront;
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (pt != null && !pt.isCancelled()) {
+            pt.cancel(true);
+        }
+        if(ug != null && !ug.isCancelled()){
+            ug.cancel(true);
+        }
+
+    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.gradesmenu, menu);
@@ -206,7 +223,7 @@ public class Grades extends Fragment {
         }
 
         protected Void doInBackground(Void... params) {
-            while (Values.loaded == false) {
+            while (Values.loaded == false && isInFront == false) {
 
             }
             return null;
@@ -250,9 +267,9 @@ public class Grades extends Fragment {
         if (id == R.id.refresh) {
             //Do whatever you want to do
             showProg(true);
-            UserGradesTask ug = new UserGradesTask(username, password);
+            ug = new UserGradesTask(username, password);
             ug.execute();
-            ProgressTask pt = new ProgressTask();
+             pt = new ProgressTask();
             pt.execute();
             return true;
         }
