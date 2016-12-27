@@ -80,7 +80,7 @@ public class CourseAdapter extends BaseAdapter {
         holder.clssname.setText(courses.get(position).getName());
         holder.teacher.setText(courses.get(position).getTeacher());
 
-        if(java.lang.Double.isNaN(courses.get(position).getGrade()))
+        if(java.lang.Double.isNaN(courses.get(position).getGrade()) || courses.get(position).assignments.size() == 0)
             holder.grade.setText("-\t");
         else {
             Log.e("Michael_Grade",courses.get(position).getName());
@@ -94,7 +94,7 @@ public class CourseAdapter extends BaseAdapter {
             holder.color.setBackgroundColor(Color.parseColor("#FFEB3B"));
         else if(Math.round(courses.get(position).getGrade()) >= 70 )
             holder.color.setBackgroundColor(Color.parseColor("#E65100"));
-        else if(java.lang.Double.isNaN(courses.get(position).getGrade())){
+        else if(java.lang.Double.isNaN(courses.get(position).getGrade()) || courses.get(position).assignments.size() == 0){
             holder.color.setBackgroundColor(Color.parseColor("#2196F3"));
         }
         else

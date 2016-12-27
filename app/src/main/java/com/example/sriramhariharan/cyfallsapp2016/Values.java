@@ -17,7 +17,9 @@ public class Values {
     public static Course assignedcourse;
     public static ArrayList<Assignment> checked;
     public static String current;
-    public static ArrayList<TimSched> schedule;
+    public static ArrayList<TimSched> firstsem;
+    public static ArrayList<TimSched> seconsem;
+
     public static boolean loaded;
     public static int lunch1;
     public static int lunch2;

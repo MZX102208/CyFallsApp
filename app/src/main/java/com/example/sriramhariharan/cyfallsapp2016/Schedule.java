@@ -84,7 +84,10 @@ public class Schedule extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootview =  inflater.inflate(R.layout.fragment_schedule, container, false);
+        ArrayList<String> firstsem = new ArrayList<>();
+        final ArrayList<String> secondsem = new ArrayList<>();
         ArrayList<String> currenschedule = new ArrayList<>();
+
         yourListView = (ListView)rootview.findViewById(R.id.fullschedule);
         currentperiod = (TextView)rootview.findViewById(R.id.periodd);
         Spinner sc = (Spinner)rootview.findViewById(R.id.schedulespinner);
@@ -96,6 +99,7 @@ public class Schedule extends Fragment {
         sc.setAdapter(dataAdapter);
         timesch = new ArrayList<>();
         DateTime dt = new DateTime();
+
         if(dt.getMonthOfYear() >= 8) {
             currenschedule = Values.PKG.schedulesem1;
         }
@@ -109,60 +113,14 @@ public class Schedule extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 timesch1.clear();
                 if(position == 0){
-                    timesch.clear();
-                    timesch.add(new TimSched(Values.PKG.schedulesem1.get(0), "7:20 – 8:13"));
-                    timesch.add(new TimSched(Values.PKG.schedulesem1.get(1), "8:19 – 9:15"));
-                    timesch.add(new TimSched(Values.PKG.schedulesem1.get(2), "9:21 – 10:14"));
 
-                    if (Values.lunch1 == 3) {
-                        timesch.add(new TimSched("A Lunch", "10:14 – 10:44"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem1.get(3), "10:50 – 11:43"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem1.get(4), "11:59 – 12:42"));
-                    }
-                    else if (Values.lunch1 == 4) {
-                        timesch.add(new TimSched(Values.PKG.schedulesem1.get(3), "10:20 – 11:13"));
-                        timesch.add(new TimSched("B Lunch", "11:13 – 11:43"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem1.get(4), "11:49 – 12:42"));
-                    }
-                    else if (Values.lunch1 == 5) {
-                        timesch.add(new TimSched(Values.PKG.schedulesem1.get(3), "10:20 – 11:13"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem1.get(4), "11:19 – 12:12"));
-                        timesch.add(new TimSched("C Lunch", "12:12 – 12:42"));
-                    }
-
-
-                    timesch.add(new TimSched(Values.PKG.schedulesem1.get(5), "12:48 – 1:41"));
-                    timesch.add(new TimSched(Values.PKG.schedulesem1.get(6), "1:47 – 2:40"));
-                    sa = new ScheduleAdapter(rootview.getContext(), timesch);
+                    sa = new ScheduleAdapter(rootview.getContext(), Values.firstsem);
                     yourListView.setAdapter(sa );
 
                 }
                 if(position == 1){
-                    timesch.clear();
-                    timesch.add(new TimSched(Values.PKG.schedulesem2.get(0), "7:20 – 8:13"));
-                    timesch.add(new TimSched(Values.PKG.schedulesem2.get(1), "8:19 – 9:15"));
-                    timesch.add(new TimSched(Values.PKG.schedulesem2.get(2), "9:21 – 10:14"));
 
-                    if (Values.lunch2 == 3) {
-                        timesch.add(new TimSched("A Lunch", "10:14 – 10:44"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem2.get(3), "10:50 – 11:43"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem2.get(4), "11:59 – 12:42"));
-                    }
-                    else if (Values.lunch2 == 4) {
-                        timesch.add(new TimSched(Values.PKG.schedulesem2.get(3), "10:20 – 11:13"));
-                        timesch.add(new TimSched("B Lunch", "11:13 – 11:43"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem2.get(4), "11:49 – 12:42"));
-                    }
-                    else if (Values.lunch2 == 5) {
-                        timesch.add(new TimSched(Values.PKG.schedulesem2.get(3), "10:20 – 11:13"));
-                        timesch.add(new TimSched(Values.PKG.schedulesem2.get(4), "11:19 – 12:12"));
-                        timesch.add(new TimSched("C Lunch", "12:12 – 12:42"));
-                    }
-
-
-                    timesch.add(new TimSched(Values.PKG.schedulesem2.get(5), "12:48 – 1:41"));
-                    timesch.add(new TimSched(Values.PKG.schedulesem2.get(6), "1:47 – 2:40"));
-                    sa = new ScheduleAdapter(rootview.getContext(), timesch);
+                    sa = new ScheduleAdapter(rootview.getContext(), Values.seconsem);
                     yourListView.setAdapter(sa );
 
                 }

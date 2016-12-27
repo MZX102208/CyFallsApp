@@ -109,13 +109,14 @@ public class Grades extends Fragment {
         yourListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Values.assignments = Values.courses.get(position).getAssignments();
                 Values.Courseindex = position;
                   /*      if(java.lang.Double.isNaN(Values.courses.get(position).getAverage())){
                             Values.assignments = null;
                         } */
-                if (Values.assignments != null) {
-
+                if (Values.assignments != null && Values.assignments.size() != 0) {
+                    Log.e("ASSIGNTEST",Values.assignments.toString());
                     Values.assignedcourse = Values.courses.get(position);
                     Intent intent = new Intent(getActivity(), AssignmentScreen.class);
                     startActivity(intent);

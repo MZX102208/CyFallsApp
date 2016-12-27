@@ -243,8 +243,6 @@ public class Login extends AppCompatActivity {
                     Values.courses = p.classes;
                     Values.PKGcopy = ClssPkg.parse(p.toString());
 
-
-
                     Log.e("HELLO",p.toString());
                     return "success";
                 }

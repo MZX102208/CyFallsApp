@@ -60,11 +60,15 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
                     Values.lunch2 = second;
                 }
             }
-            Values.PKG.schedulesem1.remove(lunch);
-            Values.PKG.schedulesem2.remove(second);
+            if(lunch != 0 && second != 0) {
+                Values.PKG.schedulesem1.remove(lunch);
+                Values.PKG.schedulesem2.remove(second);
+            }
+            Log.e("SC",Values.PKG.schedulesem1.toString());
 
         }
-        if(dt.getMonthOfYear() >=1 && dt.getMonthOfYear() < 8) {
+         if(dt.getMonthOfYear() >=1 && dt.getMonthOfYear() < 8) {
+            Log.e("HELLO","hello");
             currenschedule = Values.PKG.schedulesem2;
             int second = 0;
 
@@ -82,8 +86,10 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
                     Values.lunch1 = second;
                 }
             }
-            Values.PKG.schedulesem1.remove(second);
-            Values.PKG.schedulesem2.remove(lunch);
+             if(lunch != 0 && second != 0) {
+                 Values.PKG.schedulesem1.remove(second);
+                 Values.PKG.schedulesem2.remove(lunch);
+             }
         }
 
         int min = dt.getMinuteOfDay();
@@ -129,6 +135,60 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
 
         Values.current = current;
 
+        ArrayList<TimSched> timesch = new ArrayList<>();
+        timesch.add(new TimSched(Values.PKG.schedulesem1.get(0), "7:20 – 8:13"));
+        timesch.add(new TimSched(Values.PKG.schedulesem1.get(1), "8:19 – 9:15"));
+        timesch.add(new TimSched(Values.PKG.schedulesem1.get(2), "9:21 – 10:14"));
+
+        if (Values.lunch1 == 3) {
+            timesch.add(new TimSched("A Lunch", "10:14 – 10:44"));
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(3), "10:50 – 11:43"));
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(4), "11:59 – 12:42"));
+        }
+        else if (Values.lunch1 == 4) {
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(3), "10:20 – 11:13"));
+            timesch.add(new TimSched("B Lunch", "11:13 – 11:43"));
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(4), "11:49 – 12:42"));
+        }
+        else if (Values.lunch1 == 5) {
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(3), "10:20 – 11:13"));
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(4), "11:19 – 12:12"));
+            timesch.add(new TimSched("C Lunch", "12:12 – 12:42"));
+        }
+
+
+        timesch.add(new TimSched(Values.PKG.schedulesem1.get(5), "12:48 – 1:41"));
+        timesch.add(new TimSched(Values.PKG.schedulesem1.get(6), "1:47 – 2:40"));
+
+        Values.firstsem = timesch;
+
+        ArrayList<TimSched> timesch2 = new ArrayList<>();
+        timesch2.add(new TimSched(Values.PKG.schedulesem2.get(0), "7:20 – 8:13"));
+        timesch2.add(new TimSched(Values.PKG.schedulesem2.get(1), "8:19 – 9:15"));
+        timesch2.add(new TimSched(Values.PKG.schedulesem2.get(2), "9:21 – 10:14"));
+
+        if (Values.lunch2 == 3) {
+            timesch2.add(new TimSched("A Lunch", "10:14 – 10:44"));
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(3), "10:50 – 11:43"));
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(4), "11:59 – 12:42"));
+        }
+        else if (Values.lunch2 == 4) {
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(3), "10:20 – 11:13"));
+            timesch2.add(new TimSched("B Lunch", "11:13 – 11:43"));
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(4), "11:49 – 12:42"));
+        }
+        else if (Values.lunch2 == 5) {
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(3), "10:20 – 11:13"));
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(4), "11:19 – 12:12"));
+            timesch2.add(new TimSched("C Lunch", "12:12 – 12:42"));
+        }
+
+
+        timesch2.add(new TimSched(Values.PKG.schedulesem2.get(5), "12:48 – 1:41"));
+        timesch2.add(new TimSched(Values.PKG.schedulesem2.get(6), "1:47 – 2:40"));
+
+        Values.seconsem = timesch2;
+
 
 
 
@@ -146,12 +206,6 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             e.printStackTrace();
         }
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-        for(int i = 0;i<Values.courses.size();i++){
-            if(Values.courses.get(i).getAssignments().size() == 0){
-                Values.courses.remove(i);
-            }
-        }
 
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
         Toast.makeText(this,"Welcome "+Values.PKG.name+"!",Toast.LENGTH_LONG);
