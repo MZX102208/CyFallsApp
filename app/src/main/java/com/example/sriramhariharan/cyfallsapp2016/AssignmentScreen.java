@@ -1,5 +1,7 @@
 package com.example.sriramhariharan.cyfallsapp2016;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 
 public class AssignmentScreen extends AppCompatActivity {
 
-
+    public final Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +31,7 @@ public class AssignmentScreen extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView lv = (ListView)findViewById(R.id.assignlist);
-        ArrayList<Assignment> assignments = Values.PKG.classes.get(Values.Courseindex).assignments;
+        final ArrayList<Assignment> assignments = Values.PKG.classes.get(Values.Courseindex).assignments;
         lv.setAdapter(new AssignmentAdapter(this, assignments));
         lv.setPadding(0, 0, 0, 0);
 
@@ -62,6 +65,23 @@ public class AssignmentScreen extends AppCompatActivity {
         averagename.setText(s);
         averageav.setText(k);
         lv.addHeaderView(headerview);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position != 0) {
+                    position = position - 1;
+                    if (!assignments.get(position).getComment().equals("")) {
+                        Dialog dialog = new Dialog(AssignmentScreen.this);
+                        dialog.setContentView(R.layout.assigndialog);
+                        dialog.setTitle("Comment");
+                        // set the custom dialog components - text, image and button
+                        dialog.show();
+                        TextView tx = (TextView) dialog.findViewById(R.id.fullcomment);
+                        tx.setText(assignments.get(position).getComment());
+                    }
+                }
+            }
+        });
 
 
 

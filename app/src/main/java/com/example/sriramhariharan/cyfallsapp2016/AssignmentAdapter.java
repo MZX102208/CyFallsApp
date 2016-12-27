@@ -86,8 +86,13 @@ public class AssignmentAdapter extends BaseAdapter {
             holder.assigncomments.setVisibility(View.GONE);
 
         }
+
         else {
-            holder.assigncomments.setText(a.getComment());
+            String k = a.getComment();
+            if(a.getComment().length() > 30) {
+               k = k.substring(0,30)+"...";
+            }
+            holder.assigncomments.setText(k);
         }
         try {
             if (java.lang.Double.isNaN(Double.parseDouble(a.getGrade()))) {

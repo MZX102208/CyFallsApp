@@ -107,12 +107,10 @@ public class GradeCalc extends AppCompatActivity {
                 //               buttonheader.setVisibility(View.GONE);
                 dialog = new Dialog(context);
                 dialog.setContentView(R.layout.customdialog);
-     //           dialog.setTitle("Add");
+                dialog.setTitle("Add");
 
                 // set the custom dialog components - text, image and button
                 dialog.show();
-                TextView title = (TextView)dialog.findViewById(R.id.dialogtitle);
-                title.setText("Add Assignment");
                 editgrade = (EditText) dialog.findViewById(R.id.addgrade);
                 editname = (EditText) dialog.findViewById(R.id.addname);
                 edittotal = (EditText) dialog.findViewById(R.id.addtotal);
@@ -243,16 +241,13 @@ public class GradeCalc extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 dialog = new Dialog(context);
                 dialog.setContentView(R.layout.customdialog);
-     //           dialog.setTitle("Edit");
+                dialog.setTitle("Edit");
                 Log.e("HELLO", "HELLO");
                 // set the custom dialog components - text, image and button
                 dialog.show();
                 editgrade = (EditText) dialog.findViewById(R.id.addgrade);
                 editname = (EditText) dialog.findViewById(R.id.addname);
                 edittotal = (EditText) dialog.findViewById(R.id.addtotal);
-                TextView title = (TextView)dialog.findViewById(R.id.dialogtitle);
-                title.setText("Edit Assignment");
-
                 Button stop = (Button) dialog.findViewById(R.id.addstopbutton);
 
                 Button addBUTTONGO = (Button) dialog.findViewById(R.id.addbutton);
