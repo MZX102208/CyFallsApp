@@ -19,4 +19,7 @@ public class Values {
     public static String current;
     public static ArrayList<TimSched> schedule;
     public static boolean loaded;
+    public static int lunch1;
+    public static int lunch2;
+
 }

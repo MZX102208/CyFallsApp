@@ -133,7 +133,11 @@ public class ClssPkg implements Serializable{
         for(int i=0;i<iter1;i++){
             clss.schedulesem2.add(s.next());
         }
+        Log.e("FIRST SEM",clss.schedulesem1.toString());
+        Log.e("SECOND SEM",clss.schedulesem2.toString());
+
         return clss;
+
     }
     public static ClssPkg getFromServer(String user, String pass){
         String s = "";

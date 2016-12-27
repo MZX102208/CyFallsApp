@@ -46,7 +46,6 @@ public class ScheduleAdapter extends BaseAdapter{
     {
         TextView periodname;
         TextView periodtime;
-        TextView periodroom;
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
@@ -56,11 +55,8 @@ public class ScheduleAdapter extends BaseAdapter{
         rowView = inflater.inflate(R.layout.schedulerowlayout, null);
         holder.periodname = (TextView) rowView.findViewById(R.id.theperiod);
         holder.periodtime = (TextView)rowView.findViewById(R.id.thetime);
-        holder.periodroom = (TextView)rowView.findViewById(R.id.roomnumber);
         holder.periodname.setText(times.get(position).getPeriod());
         holder.periodtime.setText(times.get(position).getTime());
-        holder.periodroom.setText(times.get(position).getRoomnumb());
-
         return rowView;
     }
 }

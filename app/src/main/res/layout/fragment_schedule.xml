@@ -45,6 +45,13 @@
             android:id="@+id/schtitle2"
             android:text="Normal Bell Schedule"
             />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/schedulespinner"
+            android:layout_height="wrap_content">
+
+        </Spinner>
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

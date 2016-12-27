@@ -39,12 +39,58 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String current = "";
-  //      String lunch = Values.PKG.lunch;
+        int lunch = 0;
         DateTime dt = new DateTime();
+        ArrayList<String> currenschedule = new ArrayList<>();
+        if(dt.getMonthOfYear() >= 8) {
+            currenschedule = Values.PKG.schedulesem1;
+            int second = 0;
+            for (String s : Values.PKG.schedulesem1) {
+                if (s.equals("Lunch")) {
+                    lunch = Values.PKG.schedulesem1.indexOf(s);
+
+                    Values.lunch1 = lunch;
+                    Log.e("LUNCH",Values.lunch1+"");
+
+                }
+            }
+            for(String s: Values.PKG.schedulesem2){
+                if(s.equals("Lunch")){
+                    second = Values.PKG.schedulesem2.indexOf(s);
+                    Values.lunch2 = second;
+                }
+            }
+            Values.PKG.schedulesem1.remove(lunch);
+            Values.PKG.schedulesem2.remove(second);
+
+        }
+        if(dt.getMonthOfYear() >=1 && dt.getMonthOfYear() < 8) {
+            currenschedule = Values.PKG.schedulesem2;
+            int second = 0;
+
+            for (String s : Values.PKG.schedulesem2) {
+
+                if (s.equals("Lunch")) {
+                    lunch = Values.PKG.schedulesem2.indexOf(s);
+
+                    Values.lunch2 = lunch;
+                }
+            }
+            for(String s: Values.PKG.schedulesem1){
+                if(s.equals("Lunch")){
+                    second = Values.PKG.schedulesem1.indexOf(s);
+                    Values.lunch1 = second;
+                }
+            }
+            Values.PKG.schedulesem1.remove(second);
+            Values.PKG.schedulesem2.remove(lunch);
+        }
+
         int min = dt.getMinuteOfDay();
 
 
-/*
+
+
 
         if(min < 440)
             current = ("Before School");
@@ -54,23 +100,23 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             current =("2nd Period");
         else if(min >= 561 && min < 614)
             current =("3rd Period");
-        else if(lunch.equals("A") && min >= 614 && min < 644)
+        else if(lunch == 3 && min >= 614 && min < 644)
             current =("A lunch");
-        else if(lunch.equals("A") && min >= 650 && min < 703)
+        else if(lunch == 3  && min >= 650 && min < 703)
             current =("4th Period");
-        else if(lunch.equals("A") && min >= 709 && min < 762)
+        else if(lunch == 3 && min >= 709 && min < 762)
             current =("5th Period");
-        else if(lunch.equals("B") && min >= 620 && min < 673)
+        else if(lunch == 4 && min >= 620 && min < 673)
             current =("4th Period");
-        else if(lunch.equals("B") && min >= 673 && min < 703)
+        else if(lunch == 4 && min >= 673 && min < 703)
             current =("B lunch");
-        else if(lunch.equals("B") && min >= 709 && min < 762)
+        else if(lunch == 4 && min >= 709 && min < 762)
             current =("5th Period");
-        else if(lunch.equals("C") && min >= 620 && min < 673)
+        else if(lunch == 5 && min >= 620 && min < 673)
             current ="4th Period";
-        else if(lunch.equals("C") && min >= 679 && min < 732)
+        else if(lunch == 5 && min >= 679 && min < 732)
             current ="5th Period";
-        else if(lunch.equals("C") && min >= 732 && min < 762)
+        else if(lunch == 5 && min >= 732 && min < 762)
             current =("C lunch");
         else if(min >= 768 && min < 821)
             current =("6th Period");
@@ -80,33 +126,10 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             current =("After School");
         else
             current =("Passing Period");
-            */
-        Values.current = current;
-        ArrayList<TimSched> timesch = new ArrayList();
-        timesch.add(new TimSched(Values.courses.get(0).getName(), "7:20 – 8:13",Values.courses.get(0).getRoomnum()));
-        timesch.add(new TimSched(Values.courses.get(1).getName(), "8:19 – 9:15",Values.courses.get(1).getRoomnum()));
-        timesch.add(new TimSched(Values.courses.get(2).getName(), "9:21 – 10:14",Values.courses.get(2).getRoomnum()));
-/*
-        if (lunch.equals("A")) {
-            timesch.add(new TimSched("A Lunch", "10:14 – 10:44","Cafeteria"));
-            timesch.add(new TimSched(Values.courses.get(3).getName(), "10:50 – 11:43",Values.courses.get(3).getRoomnum()));
-            timesch.add(new TimSched(Values.courses.get(4).getName(), "11:59 – 12:42",Values.courses.get(4).getRoomnum()));
-        }
-        else if (lunch.equals("B")) {
-            timesch.add(new TimSched(Values.courses.get(3).getName(), "10:20 – 11:13",Values.courses.get(3).getRoomnum()));
-            timesch.add(new TimSched("B Lunch", "11:13 – 11:43","Cafeteria"));
-            timesch.add(new TimSched(Values.courses.get(4).getName(), "11:49 – 12:42",Values.courses.get(4).getRoomnum()));
-        }
-        else if (lunch.equals("C")) {
-            timesch.add(new TimSched(Values.courses.get(3).getName(), "10:20 – 11:13",Values.courses.get(3).getRoomnum()));
-            timesch.add(new TimSched(Values.courses.get(4).getName(), "11:19 – 12:12",Values.courses.get(4).getRoomnum()));
-            timesch.add(new TimSched("C Lunch", "12:12 – 12:42","Cafeteria"));
-        }
 
-        */
-        timesch.add(new TimSched(Values.courses.get(5).getName(), "12:48 – 1:41",Values.courses.get(5).getRoomnum()));
-        timesch.add(new TimSched(Values.courses.get(6).getName(), "1:47 – 2:40",Values.courses.get(6).getRoomnum()));
-        Values.schedule = timesch;
+        Values.current = current;
+
+
 
 
 

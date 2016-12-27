@@ -8,10 +8,9 @@ public class TimSched {
     private String period;
     private String time;
     private String roomnumb;
-    public TimSched(String perod,String tie, String roomnum){
+    public TimSched(String perod,String tie){
         period = perod;
         time = tie;
-        this.roomnumb = roomnum;
     }
 
     public String getRoomnumb() {
