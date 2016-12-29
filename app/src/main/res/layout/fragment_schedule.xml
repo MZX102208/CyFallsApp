@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     tools:context="com.example.sriramhariharan.cyfallsapp2016.Schedule">
 
     <!-- TODO: Update blank fragment layout -->
@@ -29,7 +29,7 @@
             android:id="@+id/periodd"
             android:layout_gravity="center_horizontal"
             android:textStyle="bold"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="1dp"
             android:textSize="20dp"
             android:text="period"
             />
@@ -40,8 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textSize="15dp"
-            android:layout_marginBottom="2dp"
+            android:textSize="12dp"
+            android:layout_marginBottom="0dp"
             android:id="@+id/schtitle2"
             android:text="Normal Bell Schedule"
             />
