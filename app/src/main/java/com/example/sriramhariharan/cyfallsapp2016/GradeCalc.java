@@ -328,7 +328,7 @@ public class GradeCalc extends AppCompatActivity {
 
             }
         });
-        SendData sd = new SendData("enterassign");
+        SendData sd = new SendData("entercalc");
         sd.execute();
     }
 

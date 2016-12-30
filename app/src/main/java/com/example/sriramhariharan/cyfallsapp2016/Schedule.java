@@ -139,7 +139,7 @@ public class Schedule extends Fragment {
 
 
         currentperiod.setText(Values.current);
-        SendData sd = new SendData("enterscedule");
+        SendData sd = new SendData("enterschedule");
         sd.execute();
         return rootview;
     }
