@@ -100,6 +100,11 @@ public class Grades extends Fragment {
         password = sharedPref.getString("Password", "");
 
         // Will not work for new six weeks though?
+        for(int i = 0;i<Values.courses.size();i++){
+            if(Values.courses.get(i).getAssignments().size() == 0){
+                Values.courses.remove(i);
+            }
+        }
 
         yourListView.setAdapter(new CourseAdapter(rootview.getContext(), Values.courses));
         yourListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -111,6 +116,8 @@ public class Grades extends Fragment {
                   /*      if(java.lang.Double.isNaN(Values.courses.get(position).getAverage())){
                             Values.assignments = null;
                         } */
+
+
                 if (Values.assignments != null && Values.assignments.size() != 0) {
                     Log.e("ASSIGNTEST",Values.assignments.toString());
                     Values.assignedcourse = Values.courses.get(position);
