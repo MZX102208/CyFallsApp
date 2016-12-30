@@ -167,7 +167,7 @@ public class ClssPkg implements Serializable{
 
     public void sendActivityData(String d){
         try {
-            Socket clientSocket = new Socket("99.8.234.29", 6789);
+            Socket clientSocket = new Socket("173.227.86.24", 6789);
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             outToServer.writeBytes(username+" "+password+" "+d+'\n');
