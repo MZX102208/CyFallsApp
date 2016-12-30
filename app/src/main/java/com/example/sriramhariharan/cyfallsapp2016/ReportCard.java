@@ -9,15 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -101,6 +98,8 @@ public class ReportCard extends android.support.v4.app.Fragment implements Adapt
 
         });
 
+        SendData sd = new SendData("enterreport");
+        sd.execute();
         return rootview;
     }
 

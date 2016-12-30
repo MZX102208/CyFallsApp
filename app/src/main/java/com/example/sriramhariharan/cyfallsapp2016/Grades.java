@@ -3,7 +3,6 @@ package com.example.sriramhariharan.cyfallsapp2016;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -11,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,8 +21,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 
 /**
@@ -127,6 +123,8 @@ public class Grades extends Fragment {
             }
 
         });
+        SendData sd = new SendData("entergrades");
+        sd.execute();
         return rootview;
     }
     private void showProg(final boolean show) {

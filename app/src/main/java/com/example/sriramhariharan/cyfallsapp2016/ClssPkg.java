@@ -22,6 +22,9 @@ import java.util.Scanner;
  */
 public class ClssPkg implements Serializable{
 
+    String username;
+    String password;
+
     String lunch;
     int[] abs = new int[8];
     String absString = "";
@@ -143,7 +146,7 @@ public class ClssPkg implements Serializable{
         String s = "";
         try {
             Log.e("TEST","STARTING");
-            Socket clientSocket = new Socket("99.8.234.29", 6789);
+            Socket clientSocket = new Socket("173.227.86.24", 6789);
             Log.e("Test","Successfull");
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -156,7 +159,21 @@ public class ClssPkg implements Serializable{
         } catch (IOException ex) {
 
         }
-        return parse(s);
+        ClssPkg cp = parse(s);
+        cp.username = user;
+        cp.password = pass;
+        return cp;
+    }
+
+    public void sendActivityData(String d){
+        try {
+            Socket clientSocket = new Socket("99.8.234.29", 6789);
+            DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            outToServer.writeBytes(username+" "+password+" "+d+'\n');
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

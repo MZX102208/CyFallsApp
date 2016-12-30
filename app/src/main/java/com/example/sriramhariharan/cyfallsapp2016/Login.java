@@ -24,9 +24,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import org.joda.time.DateTime;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -148,7 +145,7 @@ public class Login extends AppCompatActivity {
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("s");
+        return email.length() > 0;
     }
 
     private boolean isPasswordValid(String password) {
@@ -244,6 +241,7 @@ public class Login extends AppCompatActivity {
                     Values.PKGcopy = ClssPkg.parse(p.toString());
 
                     Log.e("HELLO",p.toString());
+
                     return "success";
                 }
                 else{

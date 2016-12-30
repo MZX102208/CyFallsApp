@@ -1,24 +1,14 @@
 package com.example.sriramhariharan.cyfallsapp2016;
 
 import android.content.Context;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 /**
  * Created by User1 on 4/20/2016.
@@ -127,6 +117,8 @@ public class Attendance extends android.support.v4.app.Fragment {
         */
         ArrayAdapter adapter = new ArrayAdapter<String>(rootview.getContext(),R.layout.simplelayoutleft,R.id.textView3,StringArray);
         yourListView.setAdapter(adapter);
+        SendData sd = new SendData("enterattend");
+        sd.execute();
         return rootview;
     }
 
