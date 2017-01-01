@@ -11,12 +11,10 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -141,7 +139,7 @@ public class BackgroundService extends Service {
     @Override
     public void onDestroy() {
         /* IF YOU WANT THIS SERVICE KILLED WITH THE APP THEN UNCOMMENT THE FOLLOWING LINE */
-        handler.removeCallbacks(runnable);
+        //handler.removeCallbacks(runnable);
         //Toast.makeText(this, "Service stopped", Toast.LENGTH_LONG).show();
     }
 
