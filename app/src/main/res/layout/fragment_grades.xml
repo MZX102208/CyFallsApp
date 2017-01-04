@@ -33,6 +33,13 @@
 
         </ListView>
 
+        <TextView
+            android:text="There are currently no assignments."
+            android:layout_below="@+id/listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/noAssignTxt" />
     </RelativeLayout>
 
 

@@ -5,18 +5,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
@@ -24,8 +23,6 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import org.joda.time.DateTime;
 
-import java.lang.*;
-import java.lang.Class;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Home.OnFragmentInteractionListener, Grades.OnFragmentInteractionListener, Schedule.OnFragmentInteractionListener, Attendance.OnFragmentInteractionListener, ReportCard.OnFragmentInteractionListener{
@@ -220,15 +217,18 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
                         fragmentClass = Schedule.class;
                         break;
                     case R.id.tab_grades:
+                        Log.e("Courses currently",Values.PKG.classes.toString());
                         fragmentClass = Grades.class;
                         break;
                     case R.id.tab_reportcard:
+                        Log.e("Courses currently",Values.PKG.classes.toString());
                         fragmentClass = ReportCard.class;
                         break;
                     case R.id.tab_attendance:
                         fragmentClass = Attendance.class;
                         break;
                     default:
+                        Log.e("Courses currently",Values.PKG.classes.toString());
                         fragmentClass = Grades.class;
                 }
                 try {

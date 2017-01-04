@@ -1,25 +1,14 @@
 package com.example.sriramhariharan.cyfallsapp2016;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.sriramhariharan.cyfallsapp2016.ClssPkg;
-import com.example.sriramhariharan.cyfallsapp2016.Course;
-import com.example.sriramhariharan.cyfallsapp2016.R;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -77,7 +66,14 @@ public class CourseAdapter extends BaseAdapter {
         holder.teacher=(TextView) rowView.findViewById(R.id.teachedr);
         holder.grade = (TextView) rowView.findViewById(R.id.grade);
         holder.color = (LinearLayout)rowView.findViewById(R.id.colorcoding);
-        holder.clssname.setText(courses.get(position).getName());
+
+        String s = courses.get(position).getName();
+        if(s.length()>14){
+            s=s.substring(0,14);
+            s+="...";
+        }
+
+        holder.clssname.setText(s);
         holder.teacher.setText(courses.get(position).getTeacher());
 
         if(java.lang.Double.isNaN(courses.get(position).getGrade()) || courses.get(position).assignments.size() == 0)

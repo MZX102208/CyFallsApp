@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,6 +39,7 @@ public class Grades extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static ListView yourListView;
     private static View rootview;
+    private static TextView emptyText;
     public static ProgressTask pt;
     public static UserGradesTask ug;
     private View mProgressView;
@@ -57,15 +59,6 @@ public class Grades extends Fragment {
     public Grades() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Grades.
-     */
     // TODO: Rename and change types and number of parameters
     public static Grades newInstance(String param1, String param2) {
         Grades fragment = new Grades();
@@ -84,7 +77,6 @@ public class Grades extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         setHasOptionsMenu(true);
-
     }
 
     @Override
@@ -94,33 +86,35 @@ public class Grades extends Fragment {
         rootview = inflater.inflate(R.layout.fragment_grades, container, false);
         mProgressView = rootview.findViewById(R.id.grades_login);
         yourListView = (ListView) rootview.findViewById(R.id.listview);
+        emptyText = (TextView) rootview.findViewById(R.id.noAssignTxt);
         mProgressView = rootview.findViewById(R.id.grades_login);
         SharedPreferences sharedPref = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         username = sharedPref.getString("Username", "");
         password = sharedPref.getString("Password", "");
 
-        // Will not work for new six weeks though?
-        for(int i = 0;i<Values.courses.size();i++){
-            if(Values.courses.get(i).getAssignments().size() == 0){
-                Values.courses.remove(i);
-            }
+        Values.unemptycourses.clear();
+        for(Course c : Values.PKG.classes){
+            if(c.assignments.size()>0)Values.unemptycourses.add(c);
         }
 
-        yourListView.setAdapter(new CourseAdapter(rootview.getContext(), Values.courses));
+        if(Values.unemptycourses.size()>0)emptyText.setVisibility(View.INVISIBLE);
+        else emptyText.setVisibility(View.VISIBLE);
+
+        yourListView.setAdapter(new CourseAdapter(rootview.getContext(), Values.unemptycourses));
         yourListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Values.assignments = Values.courses.get(position).getAssignments();
+                Values.assignments = Values.unemptycourses.get(position).getAssignments();
                 Values.Courseindex = position;
-                  /*      if(java.lang.Double.isNaN(Values.courses.get(position).getAverage())){
+                  /*      if(java.lang.Double.isNaN(Values.unemptycourses.get(position).getAverage())){
                             Values.assignments = null;
                         } */
 
 
                 if (Values.assignments != null && Values.assignments.size() != 0) {
                     Log.e("ASSIGNTEST",Values.assignments.toString());
-                    Values.assignedcourse = Values.courses.get(position);
+                    Values.assignedcourse = Values.unemptycourses.get(position);
                     Intent intent = new Intent(getActivity(), AssignmentScreen.class);
                     startActivity(intent);
                 } else {
@@ -237,7 +231,7 @@ public class Grades extends Fragment {
 
         protected void onPostExecute(Void aVoid) {
             showProg(false);
-            yourListView.setAdapter(new CourseAdapter(rootview.getContext(), Values.courses));
+            yourListView.setAdapter(new CourseAdapter(rootview.getContext(), Values.unemptycourses));
         }
     }
     private boolean isInFront;
@@ -274,6 +268,7 @@ public class Grades extends Fragment {
             //Do whatever you want to do
             showProg(true);
             ug = new UserGradesTask(username, password);
+            emptyText.setVisibility(View.INVISIBLE);
             ug.execute();
              pt = new ProgressTask();
             pt.execute();
@@ -298,7 +293,7 @@ public class Grades extends Fragment {
                 Log.e("______THEERRROR",p.toString());
                 if(!(p.toString().equals("Wrong login"))){
                     Values.PKG = p;
-                    Values.courses = p.classes;
+                    Values.unemptycourses = p.classes;
                     Values.PKGcopy = ClssPkg.parse(p.toString());
 
 
@@ -321,11 +316,13 @@ public class Grades extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             Values.loaded = true;
-            for(int i = 0;i<Values.courses.size();i++){
-                if(Values.courses.get(i).getAssignments().size() == 0){
-                    Values.courses.remove(i);
-                }
+            Values.unemptycourses.clear();
+            for(Course c : Values.PKG.classes){
+                if(c.assignments.size()>0)Values.unemptycourses.add(c);
             }
+
+            if(Values.unemptycourses.size()>0)emptyText.setVisibility(View.INVISIBLE);
+            else emptyText.setVisibility(View.VISIBLE);
 
         }
     }

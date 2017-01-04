@@ -20,6 +20,8 @@ public class Values {
     public static ArrayList<TimSched> firstsem;
     public static ArrayList<TimSched> seconsem;
 
+    public static ArrayList<Course> unemptycourses = new ArrayList<Course>();
+
     public static boolean loaded;
     public static int lunch1;
     public static int lunch2;
