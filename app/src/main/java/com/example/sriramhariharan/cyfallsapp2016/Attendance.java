@@ -90,22 +90,13 @@ public class Attendance extends android.support.v4.app.Fragment {
         justText = (TextView)rootview.findViewById(R.id.textView12);
         setRetainInstance(true);
         ClssPkg pkg = Values.PKG;
-        /*
+
         tardy.setText("Tardies - "+pkg.getAbs()[7]);
-        */
-        tardy.setText("Tardies - "+4);
+
         String[] StringArray = new String[7];
 
-        StringArray[0]="1st Period - "+2;
-        StringArray[1]="2nd Period - "+2;
-        StringArray[2]="3rd Period - "+2;
-        StringArray[3]="4th Period - "+1;
-        StringArray[4]="5th Period - "+1;
-        StringArray[5]="6th Period - "+0;
-        StringArray[6]="7th Period - "+0;
 
 
-        /*
         StringArray[0]="1st Period - "+pkg.getAbs()[0];
         StringArray[1]="2nd Period - "+pkg.getAbs()[1];
         StringArray[2]="3rd Period - "+pkg.getAbs()[2];
@@ -114,7 +105,6 @@ public class Attendance extends android.support.v4.app.Fragment {
         StringArray[5]="6th Period - "+pkg.getAbs()[5];
         StringArray[6]="7th Period - "+pkg.getAbs()[6];
 
-        */
         ArrayAdapter adapter = new ArrayAdapter<String>(rootview.getContext(),R.layout.simplelayoutleft,R.id.textView3,StringArray);
         yourListView.setAdapter(adapter);
         SendData sd = new SendData("enterattend");
