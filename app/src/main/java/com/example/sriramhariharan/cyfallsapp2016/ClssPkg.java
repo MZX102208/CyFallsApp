@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -86,8 +87,12 @@ public class ClssPkg implements Serializable{
         absString = a;
         String[] arr = a.split(" ");
         for (int i = 0; i < arr.length; i++) {
-            abs[i] = Integer.parseInt(arr[i].split("-")[1]);
+            String[] tmp = arr[i].split("-");
+            if(tmp.length>=2){
+                abs[i] = Integer.parseInt(tmp[1]);
+            }
         }
+        Log.e("Testing123", Arrays.toString(abs));
     }
 
     public String toString() {
