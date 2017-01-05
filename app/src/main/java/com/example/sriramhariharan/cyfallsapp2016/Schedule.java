@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,11 +104,17 @@ public class Schedule extends Fragment {
         if(dt.getMonthOfYear() >= 8) {
             currenschedule = Values.PKG.schedulesem1;
         }
+        Log.e("Spinner",dt.getMonthOfYear()+"");
         if(dt.getMonthOfYear() >=1 && dt.getMonthOfYear() < 8){
 
             currenschedule = Values.PKG.schedulesem2;
         }
-
+        if(dt.getMonthOfYear() >= 8 && dt.getMonthOfYear() < 12){
+            sc.setSelection(0);
+        }
+        if(dt.getMonthOfYear() >= 1 && dt.getMonthOfYear() < 8){
+            sc.setSelection(1);
+        }
         sc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

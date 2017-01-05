@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             timesch.add(new TimSched("C Lunch", "12:12 – 12:42"));
         }
 
+        Log.e("JET SCHEDULE",Values.PKG.schedulesem1.toString());
 
         timesch.add(new TimSched(Values.PKG.schedulesem1.get(5), "12:48 – 1:41"));
         timesch.add(new TimSched(Values.PKG.schedulesem1.get(6), "1:47 – 2:40"));
