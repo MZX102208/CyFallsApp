@@ -21,6 +21,7 @@ public class Values {
     public static ArrayList<TimSched> seconsem;
 
     public static ArrayList<Course> unemptycourses = new ArrayList<Course>();
+    public static ArrayList<Course> hasreportcourses = new ArrayList<Course>();
 
     public static boolean loaded;
     public static int lunch1;

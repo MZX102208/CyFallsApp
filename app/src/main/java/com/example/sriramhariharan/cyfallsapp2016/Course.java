@@ -178,7 +178,9 @@ public class Course {
                 weightsum += t.weight;
             }
         }
-        grade = totalgr/weightsum*100;
+        if(weightsum!=0) {
+            grade = totalgr / weightsum * 100;
+        }
     }
 
     public String toString(){

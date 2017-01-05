@@ -85,13 +85,20 @@ public class ReportCard extends android.support.v4.app.Fragment implements Adapt
         // Inflate the layout for this fragment
         rootview = inflater.inflate(R.layout.fragment_report_card, container, false);
 
+        Values.hasreportcourses.clear();
+        for(Course c : Values.PKG.classes){
+            String s = c.mp1+c.mp2+c.mp3+c.sem1+c.final1+c.mp4+c.mp5+c.mp6+c.sem2+c.final2;
+            if(s.length()>0){
+                Values.hasreportcourses.add(c);
+            }
+        }
 
         yourlistview = (ListView) rootview.findViewById(R.id.reportlist);
-        yourlistview.setAdapter(new ReportAdapter(rootview.getContext(), Values.courses));
+        yourlistview.setAdapter(new ReportAdapter(rootview.getContext(), Values.hasreportcourses));
         yourlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Values.assignedcourse = Values.courses.get(position);
+                Values.assignedcourse = Values.hasreportcourses.get(position);
                 Intent intent = new Intent(getActivity(), ReportScreen.class);
                 startActivity(intent);
             }
