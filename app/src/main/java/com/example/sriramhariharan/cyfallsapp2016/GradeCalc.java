@@ -55,7 +55,7 @@ public class GradeCalc extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        c = Values.PKGcopy.classes.get(Values.Courseindex);
+        c = Values.PKGcopy.classes.get(Values.periodnum);
         assignments = c.assignments;
 
         ListView lv = (ListView) findViewById(R.id.calgradelist);
@@ -202,7 +202,7 @@ public class GradeCalc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 removable = true;
-                assignments = Values.PKGcopy.classes.get(Values.Courseindex).assignments;
+                assignments = Values.PKGcopy.classes.get(Values.periodnum).assignments;
                 LinearLayout removeline = (LinearLayout) findViewById(R.id.removeline);
                 //       removeline.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(getApplicationContext(), Remove.class);
@@ -216,9 +216,9 @@ public class GradeCalc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 removable = false;
-                c = Course.parse(Values.PKG.classes.get(Values.Courseindex).toString());
-                Values.PKGcopy.classes.set(Values.Courseindex, c);
-                assignments = Values.PKGcopy.classes.get(Values.Courseindex).assignments;
+                c = Course.parse(Values.PKG.classes.get(Values.periodnum).toString());
+                Values.PKGcopy.classes.set(Values.periodnum, c);
+                assignments = Values.PKGcopy.classes.get(Values.periodnum).assignments;
 //                addlin.setVisibility(View.GONE);
                 ca.notifyDataSetChanged();
                 update();
@@ -231,7 +231,7 @@ public class GradeCalc extends AppCompatActivity {
 
 
 
-        ca = new CalcAdapter(this, Values.PKGcopy, Values.Courseindex);
+        ca = new CalcAdapter(this, Values.PKGcopy, Values.periodnum);
         lv.setAdapter(ca);
         lv.setPadding(0, 0, 0, 0);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -334,7 +334,7 @@ public class GradeCalc extends AppCompatActivity {
 
 
     public static void update() {
-        c = Values.PKGcopy.classes.get(Values.Courseindex);
+        c = Values.PKGcopy.classes.get(Values.periodnum);
         c.calcType();
         clssgrade.setText(String.format("%.2f", c.getGrade()));
         String s = "";

@@ -32,15 +32,106 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
 
 
     @Override
+    protected void onResume() {
+        int lunch = 0;
+        DateTime dt = new DateTime();
+
+        if(dt.getMonthOfYear() >= 8) {
+            int second = 0;
+            for (String s : Values.PKG.schedulesem1) {
+                if (s.equals("Lunch")) {
+                    lunch = Values.PKG.schedulesem1.indexOf(s);
+
+                    Values.lunch1 = lunch;
+                    Log.e("LUNCH",Values.lunch1+"");
+
+                }
+            }
+            for(String s: Values.PKG.schedulesem2){
+                if(s.equals("Lunch")){
+                    second = Values.PKG.schedulesem2.indexOf(s);
+                    Values.lunch2 = second;
+                }
+            }
+            if(lunch != 0 && second != 0) {
+                Values.PKG.schedulesem1.remove(lunch);
+                Values.PKG.schedulesem2.remove(second);
+            }
+            Log.e("SC",Values.PKG.schedulesem1.toString());
+
+        }
+        if(dt.getMonthOfYear() >=1 && dt.getMonthOfYear() < 8) {
+            Log.e("HELLO","hello");
+            int second = 0;
+
+            for (String s : Values.PKG.schedulesem2) {
+
+                if (s.equals("Lunch")) {
+                    lunch = Values.PKG.schedulesem2.indexOf(s);
+
+                    Values.lunch2 = lunch;
+                }
+            }
+            for(String s: Values.PKG.schedulesem1){
+                if(s.equals("Lunch")){
+                    second = Values.PKG.schedulesem1.indexOf(s);
+                    Values.lunch1 = second;
+                }
+            }
+            if(lunch != 0 && second != 0) {
+                Values.PKG.schedulesem1.remove(second);
+                Values.PKG.schedulesem2.remove(lunch);
+            }
+        }
+        int min = dt.getMinuteOfDay();
+        String current = "";
+        if(min < 440)
+            current = ("Before School");
+        else if(min >= 440 && min < 493)
+            current =("1st Period");
+        else if(min >= 499 && min < 555)
+            current =("2nd Period");
+        else if(min >= 561 && min < 614)
+            current =("3rd Period");
+        else if(lunch == 3 && min >= 614 && min < 644)
+            current =("A lunch");
+        else if(lunch == 3  && min >= 650 && min < 703)
+            current =("4th Period");
+        else if(lunch == 3 && min >= 709 && min < 762)
+            current =("5th Period");
+        else if(lunch == 4 && min >= 620 && min < 673)
+            current =("4th Period");
+        else if(lunch == 4 && min >= 673 && min < 703)
+            current =("B lunch");
+        else if(lunch == 4 && min >= 709 && min < 762)
+            current =("5th Period");
+        else if(lunch == 5 && min >= 620 && min < 673)
+            current ="4th Period";
+        else if(lunch == 5 && min >= 679 && min < 732)
+            current ="5th Period";
+        else if(lunch == 5 && min >= 732 && min < 762)
+            current =("C lunch");
+        else if(min >= 768 && min < 821)
+            current =("6th Period");
+        else if(min >= 827 && min < 880)
+            current =("7th Period");
+        else if(min >= 880)
+            current =("After School");
+        else
+            current =("Passing Period");
+
+        Values.current = current;
+        super.onResume();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String current = "";
         int lunch = 0;
         DateTime dt = new DateTime();
-        ArrayList<String> currenschedule = new ArrayList<>();
         if(dt.getMonthOfYear() >= 8) {
-            currenschedule = Values.PKG.schedulesem1;
             int second = 0;
             for (String s : Values.PKG.schedulesem1) {
                 if (s.equals("Lunch")) {
@@ -66,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
         }
          if(dt.getMonthOfYear() >=1 && dt.getMonthOfYear() < 8) {
             Log.e("HELLO","hello");
-            currenschedule = Values.PKG.schedulesem2;
             int second = 0;
 
             for (String s : Values.PKG.schedulesem2) {
@@ -90,10 +180,6 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
         }
 
         int min = dt.getMinuteOfDay();
-
-
-
-
 
         if(min < 440)
             current = ("Before School");

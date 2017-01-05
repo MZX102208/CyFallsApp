@@ -30,7 +30,7 @@ public class AssignmentScreen extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView lv = (ListView)findViewById(R.id.assignlist);
-        final ArrayList<Assignment> assignments = Values.PKG.classes.get(Values.Courseindex).assignments;
+        final ArrayList<Assignment> assignments = Values.unemptycourses.get(Values.Courseindex).assignments;
         lv.setAdapter(new AssignmentAdapter(this, assignments));
         lv.setPadding(0, 0, 0, 0);
 

@@ -22,7 +22,7 @@ public class Remove extends AppCompatActivity {
 
         ListView lv = (ListView) findViewById(R.id.removelist);
 
-        RemoveAdapter ca = new RemoveAdapter(getApplicationContext(), Values.PKGcopy, Values.Courseindex);
+        RemoveAdapter ca = new RemoveAdapter(getApplicationContext(), Values.PKGcopy, Values.periodnum);
         lv.setAdapter(ca);
 
     }
@@ -42,7 +42,7 @@ public class Remove extends AppCompatActivity {
             // Respond to the action bar's Up/Home button
             case R.id.removegarbage:
                 for(Assignment a : Values.checked){
-                    Values.PKGcopy.classes.get(Values.Courseindex).assignments.remove(a);
+                    Values.PKGcopy.classes.get(Values.periodnum).assignments.remove(a);
                 }
                 this.finish();
                 return true;

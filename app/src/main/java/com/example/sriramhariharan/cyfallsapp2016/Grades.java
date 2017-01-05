@@ -107,6 +107,11 @@ public class Grades extends Fragment {
 
                 Values.assignments = Values.unemptycourses.get(position).getAssignments();
                 Values.Courseindex = position;
+                for(Course c :Values.PKG.classes){
+                    if(c.getName().equals(Values.unemptycourses.get(position).getName())){
+                        Values.periodnum = Values.PKG.classes.indexOf(c);
+                    }
+                }
                   /*      if(java.lang.Double.isNaN(Values.unemptycourses.get(position).getAverage())){
                             Values.assignments = null;
                         } */

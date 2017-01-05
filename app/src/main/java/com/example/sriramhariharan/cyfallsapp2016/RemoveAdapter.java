@@ -134,10 +134,10 @@ public class RemoveAdapter extends BaseAdapter
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if(isChecked){
-                    Values.checked.add(Values.PKGcopy.classes.get(Values.Courseindex).assignments.get(position));
+                    Values.checked.add(Values.PKGcopy.classes.get(Values.periodnum).assignments.get(position));
                 }
                 else{
-                    Values.checked.remove(Values.PKGcopy.classes.get(Values.Courseindex).assignments.get(position));
+                    Values.checked.remove(Values.PKGcopy.classes.get(Values.periodnum).assignments.get(position));
                 }
             }
         });

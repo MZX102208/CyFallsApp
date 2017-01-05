@@ -11,6 +11,7 @@ public class Values {
     public static ClssPkg PKG;
     public static ClssPkg PKGcopy;
     public static int Courseindex;
+    public static int periodnum;
 
     public static ArrayList<Course> courses;
     public static ArrayList<Assignment> assignments;

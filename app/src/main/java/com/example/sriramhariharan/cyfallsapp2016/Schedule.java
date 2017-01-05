@@ -78,6 +78,12 @@ public class Schedule extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        currentperiod.setText(Values.current);
+        super.onResume();
+    }
+
     public static ArrayList<TimSched> timesch1 = new ArrayList();
 
     @Override
