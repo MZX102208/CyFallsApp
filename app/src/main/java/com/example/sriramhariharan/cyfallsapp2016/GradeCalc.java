@@ -44,6 +44,7 @@ public class GradeCalc extends AppCompatActivity {
     public static TextView averageav;
     final Context context = this;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,8 +7,8 @@ android {
         applicationId "com.cyfalls.sriramhariharan.cyfallsapp2016"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 8
-        versionName "1.43"
+        versionCode 9
+        versionName "1.44"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
