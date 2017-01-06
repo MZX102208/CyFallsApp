@@ -45,7 +45,7 @@ public class BackgroundService extends Service {
 
 
 
-                handler.postDelayed(runnable, 10000);
+                handler.postDelayed(runnable, 60000);
                 //1800000 is 30 mins
 
             }
@@ -80,7 +80,7 @@ public class BackgroundService extends Service {
         protected String doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
             try {
-                SharedPreferences preferences = getApplicationContext().getSharedPreferences("Userinfo", Context.MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
                 SharedPreferences.Editor infoedit = preferences.edit();
                 String muser = preferences.getString("Username", "");
                 String mPassword = preferences.getString("Password", "");
@@ -104,15 +104,12 @@ public class BackgroundService extends Service {
         protected void onPostExecute(final String success) {
 
             if (success.equals("success")) {
-                SharedPreferences preferences = getApplicationContext().getSharedPreferences("Userinfo", Context.MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("Userinfo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor infoedit = preferences.edit();
                 String muser = preferences.getString("Username", "");
                 String mPassword = preferences.getString("Password", "");
                 String courses = preferences.getString("Courses", "");
-                Gson gson = new Gson();
-                java.lang.reflect.Type type = new TypeToken<List<Course>>() {
-                }.getType();
-                List<Course> courses1 = gson.fromJson(courses, type);
+                List<Course> courses1 = ClssPkg.parse(courses).classes;
                 ArrayList<String> adds = new ArrayList<String>();
                 ArrayList<String> changes = new ArrayList<String>();
 
@@ -176,10 +173,9 @@ public class BackgroundService extends Service {
                     mNotificationManager.notify((int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), mBuilder.build());
                 }
 
-                courses1 = Values.courses;
-                gson = new Gson();
-                String jsoncourses = gson.toJson(courses);
-                infoedit.putString("Courses", jsoncourses);
+
+                String stringedpkg = Values.PKG.toString();
+                infoedit.putString("Courses", stringedpkg);
                 infoedit.commit();
             }
 

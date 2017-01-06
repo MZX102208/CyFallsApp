@@ -270,18 +270,16 @@ public class Login extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = sharedPref.edit();
 
-                List<Course> courses = Values.courses;
-                Gson gson = new Gson();
-                String jsoncourses = gson.toJson(courses);
 
-
+                ClssPkg p = Values.PKG;
+                String stringedpkg = p.toString();
                 editor.putString("Username", muser);
                 editor.putString("Password", mPassword);
                 editor.commit();
 
                 SharedPreferences.Editor infoedit = preferences.edit();
                 infoedit.putString("Name", tname);
-                infoedit.putString("Courses",jsoncourses);
+                infoedit.putString("Courses",stringedpkg);
                 infoedit.commit();
 
                 Intent intent = new Intent(Login.this, MainActivity.class);
