@@ -226,6 +226,7 @@ public class GradeCalc extends AppCompatActivity {
                 if (dialog != null) {
                     dialog.hide();
                 }
+                //
             }
         });
 
