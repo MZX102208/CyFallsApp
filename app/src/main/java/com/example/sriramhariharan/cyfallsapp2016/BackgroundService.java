@@ -135,7 +135,7 @@ public class BackgroundService extends Service {
                 for (String s : adds) {
                     NotificationCompat.Builder mBuilder =
                             new NotificationCompat.Builder(getApplicationContext())
-                                    .setSmallIcon(R.drawable.delete)
+                                    .setSmallIcon(R.drawable.ic_school_black_24dp)
                                     .setContentTitle("Cypress Falls App")
                                     .setContentText("A grade was added in " + s + ".");
                     Intent resultIntent = new Intent(getApplicationContext(), Login.class);
@@ -155,7 +155,7 @@ public class BackgroundService extends Service {
                 for (String s : changes) {
                     NotificationCompat.Builder mBuilder =
                             new NotificationCompat.Builder(getApplicationContext())
-                                    .setSmallIcon(R.drawable.delete)
+                                    .setSmallIcon(R.drawable.ic_school_black_24dp)
                                     .setContentTitle("Cypress Falls App")
                                     .setContentText("A grade was changed in " + s + ".");
                     Intent resultIntent = new Intent(getApplicationContext(), Login.class);
