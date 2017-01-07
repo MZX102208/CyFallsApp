@@ -12,6 +12,8 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,13 +78,22 @@ public class BackgroundService extends Service {
         protected String doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
             try {
+
                 SharedPreferences preferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
                 SharedPreferences.Editor infoedit = preferences.edit();
                 String muser = preferences.getString("Username", "");
                 String mPassword = preferences.getString("Password", "");
 
 
-                ClssPkg p = ClssPkg.getFromServer(muser, mPassword, 2);
+                int sem = 0;
+                DateTime dt = new DateTime();
+                if(dt.getMonthOfYear() >= 8 && dt.getMonthOfYear() < 12){
+                    sem = 1;
+                }
+                if(dt.getMonthOfYear() >= 1 && dt.getMonthOfYear() < 8){
+                    sem = 2;
+                }
+                ClssPkg p = ClssPkg.getFromServer(muser,mPassword,sem);
                 Values.PKG = p;
                 Values.courses = p.classes;
                 Values.PKGcopy = ClssPkg.parse(p.toString());

@@ -23,6 +23,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.joda.time.DateTime;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -294,7 +296,15 @@ public class Grades extends Fragment {
         protected Void doInBackground(Void... params) {
 
             try {
-                ClssPkg p = ClssPkg.getFromServer(muser,mPassword, 2);
+                int sem = 0;
+                DateTime dt = new DateTime();
+                if(dt.getMonthOfYear() >= 8 && dt.getMonthOfYear() < 12){
+                    sem = 1;
+                }
+                if(dt.getMonthOfYear() >= 1 && dt.getMonthOfYear() < 8){
+                    sem = 2;
+                }
+                ClssPkg p = ClssPkg.getFromServer(muser,mPassword,sem);
                 Log.e("______THEERRROR",p.toString());
                 if(!(p.toString().equals("Wrong login"))){
                     Values.PKG = p;

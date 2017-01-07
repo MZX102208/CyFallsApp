@@ -22,6 +22,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import org.joda.time.DateTime;
+
+import java.util.List;
+
 
 /**
  * A login screen that offers login via email/password.
@@ -229,7 +235,15 @@ public class Login extends AppCompatActivity {
             SharedPreferences preferences = Login.this.getSharedPreferences("Userinfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = preferences.edit();
             try {
-                ClssPkg p = ClssPkg.getFromServer(muser,mPassword, 2);
+                int sem = 0;
+                DateTime dt = new DateTime();
+                if(dt.getMonthOfYear() >= 8 && dt.getMonthOfYear() < 12){
+                    sem = 1;
+                }
+                if(dt.getMonthOfYear() >= 1 && dt.getMonthOfYear() < 8){
+                    sem = 2;
+                }
+                ClssPkg p = ClssPkg.getFromServer(muser,mPassword,sem);
                 Log.e("______THEERRROR",p.toString());
                 if(!(p.toString().equals("Wrong login"))){
                     Values.PKG = p;
