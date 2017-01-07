@@ -103,7 +103,9 @@ public class ClssPkg implements Serializable{
         for (Course c : classes) {
             ret += c.toString();
         }
-        ret += "{" + absString + "}";
+        for (int i = 0; i < abs.length; i++) {
+            ret += "{" + abs[i] + "}";
+        }
         ret += schedulesem1.size();
         for(String s : schedulesem1){
             ret+="{"+s+"}";
