@@ -294,7 +294,7 @@ public class Grades extends Fragment {
         protected Void doInBackground(Void... params) {
 
             try {
-                ClssPkg p = ClssPkg.getFromServer(muser,mPassword);
+                ClssPkg p = ClssPkg.getFromServer(muser,mPassword, 2);
                 Log.e("______THEERRROR",p.toString());
                 if(!(p.toString().equals("Wrong login"))){
                     Values.PKG = p;

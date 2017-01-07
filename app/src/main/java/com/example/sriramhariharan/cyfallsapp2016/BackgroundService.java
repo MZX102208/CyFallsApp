@@ -11,10 +11,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,7 +82,7 @@ public class BackgroundService extends Service {
                 String mPassword = preferences.getString("Password", "");
 
 
-                ClssPkg p = ClssPkg.getFromServer(muser, mPassword);
+                ClssPkg p = ClssPkg.getFromServer(muser, mPassword, 2);
                 Values.PKG = p;
                 Values.courses = p.classes;
                 Values.PKGcopy = ClssPkg.parse(p.toString());

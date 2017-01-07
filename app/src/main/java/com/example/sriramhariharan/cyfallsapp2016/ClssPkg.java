@@ -33,6 +33,8 @@ public class ClssPkg implements Serializable{
     ArrayList<Course> classes = new ArrayList<Course>();
     ArrayList<String> schedulesem1 = new ArrayList<String>();
     ArrayList<String> schedulesem2 = new ArrayList<String>();
+    public static final String IP = "99.8.234.29";
+    //public static final String IP = "173.227.86.24";
 
     public ClssPkg(String n) {
         name = n;
@@ -132,7 +134,9 @@ public class ClssPkg implements Serializable{
             }
             clss.classes.add(c);
         }
-        clss.addAbsences(s.next());
+        for (int i = 0; i < clss.abs.length; i++) {
+            clss.abs[i] = Integer.parseInt(s.next());
+        }
         iter1 = s.nextInt();
         for(int i=0;i<iter1;i++){
             clss.schedulesem1.add(s.next());
@@ -147,15 +151,15 @@ public class ClssPkg implements Serializable{
         return clss;
 
     }
-    public static ClssPkg getFromServer(String user, String pass){
+    public static ClssPkg getFromServer(String user, String pass, int semnum){
         String s = "";
         try {
             Log.e("TEST","STARTING");
-            Socket clientSocket = new Socket("173.227.86.24", 6789);
+            Socket clientSocket = new Socket(IP, 6789);
             Log.e("Test","Successfull");
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outToServer.writeBytes(user+" "+pass+'\n');
+            outToServer.writeBytes(user+" "+pass+" "+semnum+'\n');
             Log.e("TEST","wroteBytes");
             String rec = inFromServer.readLine();
             Log.e("TEST","readLine");
@@ -172,7 +176,7 @@ public class ClssPkg implements Serializable{
 
     public void sendActivityData(String d){
         try {
-            Socket clientSocket = new Socket("173.227.86.24", 6789);
+            Socket clientSocket = new Socket(IP, 6789);
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             outToServer.writeBytes(username+" "+password+" "+d+'\n');
