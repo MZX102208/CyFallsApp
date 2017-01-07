@@ -234,7 +234,7 @@ public class Login extends AppCompatActivity {
             // TODO: attempt authentication against a network service.
             SharedPreferences preferences = Login.this.getSharedPreferences("Userinfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = preferences.edit();
-            try {
+           try {
                 int sem = 0;
                 DateTime dt = new DateTime();
                 if(dt.getMonthOfYear() >= 8 && dt.getMonthOfYear() < 12){
@@ -258,7 +258,7 @@ public class Login extends AppCompatActivity {
                     return "fail";
                 }
 
-            } catch (Exception e) {
+            } catch(Exception e) {
                 Log.e("THE ERROR",e.toString());
                 return "Exception";
             }

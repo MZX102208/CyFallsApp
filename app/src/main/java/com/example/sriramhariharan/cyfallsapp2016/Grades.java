@@ -308,7 +308,7 @@ public class Grades extends Fragment {
                 Log.e("______THEERRROR",p.toString());
                 if(!(p.toString().equals("Wrong login"))){
                     Values.PKG = p;
-                    Values.unemptycourses = p.classes;
+           //         Values.unemptycourses = p.classes;
                     Values.PKGcopy = ClssPkg.parse(p.toString());
 
 

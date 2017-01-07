@@ -93,7 +93,7 @@ public class BackgroundService extends Service {
                 if(dt.getMonthOfYear() >= 1 && dt.getMonthOfYear() < 8){
                     sem = 2;
                 }
-                ClssPkg p = ClssPkg.getFromServer(muser,mPassword,sem);
+                ClssPkg p = ClssPkg.getFromServer(muser,mPassword,2);
                 Values.PKG = p;
                 Values.courses = p.classes;
                 Values.PKGcopy = ClssPkg.parse(p.toString());
