@@ -137,7 +137,10 @@ public class ClssPkg implements Serializable{
             clss.classes.add(c);
         }
         for (int i = 0; i < clss.abs.length; i++) {
-            clss.abs[i] = Integer.parseInt(s.next());
+            String k = s.next();
+       //     Log.e("UNIQUE",i+ " " +clss.abs.length+" "+k);
+            clss.abs[i] = Integer.parseInt(k);
+
         }
         iter1 = s.nextInt();
         for(int i=0;i<iter1;i++){
