@@ -1,6 +1,9 @@
 package com.example.sriramhariharan.cyfallsapp2016;
 
+import java.security.KeyStore;
 import java.util.ArrayList;
+
+import javax.net.ssl.SSLContext;
 
 /**
  * Created by SriramHariharan on 12/22/16.
@@ -27,5 +30,9 @@ public class Values {
     public static boolean loaded;
     public static int lunch1;
     public static int lunch2;
+
+    public static KeyStore localTrustStore;
+    public static SSLContext sslContext;
+
 
 }

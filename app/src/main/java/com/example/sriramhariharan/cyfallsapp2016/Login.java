@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,11 +23,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
 import org.joda.time.DateTime;
 
-import java.util.List;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 
 
 /**
@@ -37,6 +43,7 @@ public class Login extends AppCompatActivity {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
+
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -91,10 +98,35 @@ public class Login extends AppCompatActivity {
             mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
 
-        }
+            initSSL();
 
+        }
     }
 
+    private void initSSL(){
+        try {
+            Values.localTrustStore = KeyStore.getInstance("BKS");
+            InputStream in = getResources().openRawResource(R.raw.testkeys);
+            Values.localTrustStore.load(in, "123456".toCharArray());
+
+            KeyManagerFactory kmfactory = KeyManagerFactory.getInstance(
+                    KeyManagerFactory.getDefaultAlgorithm());
+            kmfactory.init(Values.localTrustStore, "123456".toCharArray());
+            KeyManager[] keymanagers =  kmfactory.getKeyManagers();
+
+            TrustManagerFactory tmf=TrustManagerFactory
+                    .getInstance(TrustManagerFactory.getDefaultAlgorithm());
+
+            tmf.init(Values.localTrustStore);
+
+            //Values.sslContext=SSLContext.getInstance("TLSv1.2");
+            Values.sslContext= SSLContext.getInstance("SSL");
+
+            Values.sslContext.init(keymanagers, tmf.getTrustManagers(), new SecureRandom());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -143,7 +175,6 @@ public class Login extends AppCompatActivity {
             mAuthTask.execute((Void) null);
         }
     }
-
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
@@ -243,6 +274,7 @@ public class Login extends AppCompatActivity {
                 if(dt.getMonthOfYear() >= 1 && dt.getMonthOfYear() < 8){
                     sem = 2;
                 }
+                Looper.prepare();
                 ClssPkg p = ClssPkg.getFromServer(muser,mPassword,sem);
                 Log.e("______THEERRROR",p.toString());
                 if(!(p.toString().equals("Wrong login"))){

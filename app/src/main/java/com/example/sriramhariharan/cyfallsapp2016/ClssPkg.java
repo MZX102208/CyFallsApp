@@ -5,6 +5,7 @@
  */
 package com.example.sriramhariharan.cyfallsapp2016;
 
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -12,16 +13,21 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.net.Socket;
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 
 /**
  *
  * @author User1
  */
-public class ClssPkg implements Serializable{
+public class ClssPkg extends AppCompatActivity implements Serializable {
+
+    public static KeyStore myTrustStore;
 
     String username;
     String password;
@@ -33,8 +39,8 @@ public class ClssPkg implements Serializable{
     ArrayList<Course> classes = new ArrayList<Course>();
     ArrayList<String> schedulesem1 = new ArrayList<String>();
     ArrayList<String> schedulesem2 = new ArrayList<String>();
-    //public static final String IP = "99.8.234.29";
-    public static final String IP = "173.227.86.24";
+    public static final String IP = "99.8.234.29";
+    //public static final String IP = "173.227.86.24";
 
     public ClssPkg(String n) {
         name = n;
@@ -159,19 +165,20 @@ public class ClssPkg implements Serializable{
     public static ClssPkg getFromServer(String user, String pass, int semnum){
         String s = "";
         try {
-            Log.e("TEST","STARTING");
-            Socket clientSocket = new Socket(IP, 6789);
-            Log.e("Test","Successfull");
+            SSLSocket clientSocket = getSocket();
+
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
             outToServer.writeBytes(user+" "+pass+" "+semnum+'\n');
             Log.e("TEST","wroteBytes");
             String rec = inFromServer.readLine();
             Log.e("TEST","readLine");
+
             s = rec;
             clientSocket.close();
-        } catch (IOException ex) {
-
+        } catch (Exception ex) {
+            Log.e("Connection Error",ex.toString());
         }
         ClssPkg cp = parse(s);
         cp.username = user;
@@ -181,13 +188,23 @@ public class ClssPkg implements Serializable{
 
     public void sendActivityData(String d){
         try {
-            Socket clientSocket = new Socket(IP, 6789);
+            SSLSocket clientSocket = getSocket();
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             outToServer.writeBytes(username+" "+password+" "+d+'\n');
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static SSLSocket getSocket(){
+        try {
+            SSLSocketFactory sslsocketfactory=Values.sslContext.getSocketFactory();
+            return (SSLSocket) sslsocketfactory.createSocket(IP, 6789);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
