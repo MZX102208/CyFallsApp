@@ -39,8 +39,8 @@ public class ClssPkg extends AppCompatActivity implements Serializable {
     ArrayList<Course> classes = new ArrayList<Course>();
     ArrayList<String> schedulesem1 = new ArrayList<String>();
     ArrayList<String> schedulesem2 = new ArrayList<String>();
-    public static final String IP = "99.8.234.29";
-    //public static final String IP = "173.227.86.24";
+    //public static final String IP = "99.8.234.29";
+    public static final String IP = "173.227.86.24";
 
     public ClssPkg(String n) {
         name = n;
