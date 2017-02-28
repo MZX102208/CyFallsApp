@@ -90,6 +90,7 @@ public class Login extends AppCompatActivity {
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
         logo = (ImageView) findViewById(R.id.loginlogo);
+        initSSL();
         if (sharedPref.contains("Username") && sharedPref.contains("Password")) {
             String username = sharedPref.getString("Username", "");
             String password = sharedPref.getString("Password", "");
@@ -98,7 +99,6 @@ public class Login extends AppCompatActivity {
             mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
 
-            initSSL();
 
         }
     }
