@@ -60,6 +60,9 @@ public class Login extends AppCompatActivity {
         // Set up the login form.
         setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
 
+        DateTime dt = new DateTime();
+        Log.e("DATE",dt.getDayOfWeek()+"");
+
         mEmailView = (EditText) findViewById(R.id.email);
 
         SharedPreferences sharedPref = this.getSharedPreferences("Login", Context.MODE_PRIVATE);

@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 
 import org.joda.time.DateTime;
 
@@ -42,7 +43,7 @@ public class BackgroundService extends Service {
                 mAuthTask.execute((Void) null);
 
 
-
+//60,000
                 handler.postDelayed(runnable, 60000);
                 //1800000 is 30 mins
 
@@ -97,7 +98,7 @@ public class BackgroundService extends Service {
                 Values.PKG = p;
                 Values.courses = p.classes;
                 Values.PKGcopy = ClssPkg.parse(p.toString());
-                return p.toString();
+                return "success";
 
             }
             catch(Exception e){
@@ -110,6 +111,8 @@ public class BackgroundService extends Service {
         @Override
         protected void onPostExecute(final String success) {
 
+            Log.e("SUCCESS",success);
+
             if (success.equals("success")) {
                 SharedPreferences preferences = getSharedPreferences("Userinfo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor infoedit = preferences.edit();
@@ -120,51 +123,64 @@ public class BackgroundService extends Service {
                 ArrayList<String> adds = new ArrayList<String>();
                 ArrayList<String> changes = new ArrayList<String>();
 
+                Log.e("BACKGROUND",courses1.toString());
+                Log.e("BACKGROUND",Values.PKG.classes.toString());
+
                 ClssPkg p = Values.PKG;
+                String stringedpkg = p.toString();
+                infoedit.putString("Courses", stringedpkg);
+                infoedit.commit();
 
                 //            Log.e("HELLO", p.toString());
 
                 for (int i = 0; i < p.classes.size(); i++) {
                     if (p.classes.get(i).name.equals(courses1.get(i).name)) {
 
-                        if (p.classes.get(i).assignments.size() != courses1.get(i).assignments.size()) {
-                            adds.add(p.classes.get(i).getName());
-                        } else {
-                            for (Assignment a : p.classes.get(i).assignments) {
-                                courses1.get(i).assignments.remove(a);
+                        if(!p.classes.get(i).assignments.toString().equals(courses1.get(i).assignments.toString())){
+                            if(p.classes.get(i).assignments.size() > courses1.get(i).assignments.size()){
+                                adds.add(p.classes.get(i).name);
                             }
-                            if (courses1.get(i).assignments.size() > 0) {
-                                changes.add(p.classes.get(i).name);
+                            else {
+
+                                for (int j = 0;j<p.classes.get(i).assignments.size();j++){
+                                    if(!p.classes.get(i).assignments.get(j).toString().equals(courses1.get(i).assignments.get(j).toString())){
+                                        changes.add(p.classes.get(i).name);
+                                    }
+                                }
                             }
                         }
                     }
                 }
-                for (String s : adds) {
-                    NotificationCompat.Builder mBuilder =
-                            new NotificationCompat.Builder(getApplicationContext())
-                                    .setSmallIcon(R.drawable.ic_school_black_24dp)
-                                    .setContentTitle("Cypress Falls App")
-                                    .setContentText("A grade was added in " + s + ".");
-                    Intent resultIntent = new Intent(getApplicationContext(), Login.class);
-                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-                    stackBuilder.addParentStack(MainActivity.class);
-                    stackBuilder.addNextIntent(resultIntent);
-                    PendingIntent resultPendingIntent =
-                            stackBuilder.getPendingIntent(
-                                    0,
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                            );
-                    mBuilder.setContentIntent(resultPendingIntent);
-                    NotificationManager mNotificationManager =
-                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    mNotificationManager.notify((int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), mBuilder.build());
-                }
+                Log.e("HELLLLO",changes.toString());
+
                 for (String s : changes) {
+                    Log.e("HELLLLO",s);
                     NotificationCompat.Builder mBuilder =
                             new NotificationCompat.Builder(getApplicationContext())
                                     .setSmallIcon(R.drawable.ic_school_black_24dp)
                                     .setContentTitle("Cypress Falls App")
-                                    .setContentText("A grade was changed in " + s + ".");
+                                    .setContentText( "A grade in "+ s +" was edited.");
+                    Intent resultIntent = new Intent(getApplicationContext(), Login.class);
+                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+                    stackBuilder.addParentStack(MainActivity.class);
+                    stackBuilder.addNextIntent(resultIntent);
+                    PendingIntent resultPendingIntent =
+                            stackBuilder.getPendingIntent(
+                                    0,
+                                    PendingIntent.FLAG_UPDATE_CURRENT
+                            );
+                    mBuilder.setContentIntent(resultPendingIntent);
+                    NotificationManager mNotificationManager =
+                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    mNotificationManager.notify((int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), mBuilder.build());
+                }
+                for (String s : adds) {
+                    Log.e("HELLLLO",s);
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(getApplicationContext())
+                                    .setSmallIcon(R.drawable.ic_school_black_24dp)
+                                    .setContentTitle("Cypress Falls App")
+                                    .setContentText("A grade in " + s + " was added");
                     Intent resultIntent = new Intent(getApplicationContext(), Login.class);
                     TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
                     stackBuilder.addParentStack(MainActivity.class);
@@ -181,9 +197,8 @@ public class BackgroundService extends Service {
                 }
 
 
-                String stringedpkg = Values.PKG.toString();
-                infoedit.putString("Courses", stringedpkg);
-                infoedit.commit();
+
+
             }
 
 

@@ -121,6 +121,9 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             current =("Passing Period");
 
         Values.current = current;
+        if(dt.getDayOfWeek() == 6 || dt.getDayOfWeek() == 7){
+            Values.current = ("No School");
+        }
         super.onResume();
     }
 
@@ -179,6 +182,20 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
              }
         }
 
+        /*
+        for(int i = 0; i<Values.PKG.schedulesem1.size()-1;i++){
+            if(Values.PKG.schedulesem1.get(i).equals(Values.PKG.schedulesem1.get(i+1))){
+                Values.PKG.schedulesem1.remove(i);
+            }
+        }
+        for(int i = 0; i<Values.PKG.schedulesem2.size()-1;i++){
+            if(Values.PKG.schedulesem2.get(i).equals(Values.PKG.schedulesem2.get(i+1))){
+                Values.PKG.schedulesem2.remove(i);
+            }
+        }
+
+        */
+
         int min = dt.getMinuteOfDay();
 
         if(min < 440)
@@ -217,6 +234,10 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             current =("Passing Period");
 
         Values.current = current;
+        if(dt.getDayOfWeek() == 6 || dt.getDayOfWeek() == 7){
+            Values.current = ("No School");
+        }
+
 
         ArrayList<TimSched> timesch = new ArrayList<>();
         timesch.add(new TimSched(Values.PKG.schedulesem1.get(0), "7:20 – 8:13"));
@@ -240,9 +261,16 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
         }
 
         Log.e("JET SCHEDULE",Values.PKG.schedulesem1.toString());
+        Log.e("JET SCHEDULE",Values.PKG.schedulesem2.toString());
 
-        timesch.add(new TimSched(Values.PKG.schedulesem1.get(5), "12:48 – 1:41"));
-        timesch.add(new TimSched(Values.PKG.schedulesem1.get(6), "1:47 – 2:40"));
+        try {
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(5), "12:48 – 1:41"));
+            timesch.add(new TimSched(Values.PKG.schedulesem1.get(6), "1:47 – 2:40"));
+        }
+        catch (Exception e){
+
+        }
+
 
         Values.firstsem = timesch;
 
@@ -266,10 +294,13 @@ public class MainActivity extends AppCompatActivity implements Home.OnFragmentIn
             timesch2.add(new TimSched(Values.PKG.schedulesem2.get(4), "11:19 – 12:12"));
             timesch2.add(new TimSched("C Lunch", "12:12 – 12:42"));
         }
+        try {
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(5), "12:48 – 1:41"));
+            timesch2.add(new TimSched(Values.PKG.schedulesem2.get(6), "1:47 – 2:40"));
+        }
+        catch (Exception e){
 
-
-        timesch2.add(new TimSched(Values.PKG.schedulesem2.get(5), "12:48 – 1:41"));
-        timesch2.add(new TimSched(Values.PKG.schedulesem2.get(6), "1:47 – 2:40"));
+        }
 
         Values.seconsem = timesch2;
 
