@@ -5,7 +5,6 @@ This app allows students to:
 - View grades & assignments in an easy to read, color-coded interface
 
 ![Grade Summary](https://lh3.googleusercontent.com/2yED-RzWplDG1vqkoKaY1GJhWxVUDlA4HaoL61Uwv1RBbbFt1cM3ayJhE-7wjEwp6GF8=h310-rw)
-
 ![Class View](https://lh3.googleusercontent.com/aaxnSYjjOOVbO2U0WQxDF6dlyq1g9-w7BvKw1duXVw4jSm-CnJ6ziD_18S-uR7gz_Q=h310-rw)
 
 - Receive notifications whenever a new grade is put in
