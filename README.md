@@ -9,14 +9,19 @@ This app allows students to:
 
 - Receive notifications whenever a new grade is put in
 - Take advantage of a Grade Calculator that has full HAC integration and live updating
-- View schedules for both semesters, and the current period
-- See Attendance data, including the number of tardies and absences in each class
 
 ![Grade Calculator](https://lh3.googleusercontent.com/Z3RsCAi4XmC5aMXN3klBv1EEmQAX3NZbR044mp7yxiT-xMHf0GOQrwgB16XBB7hCU3c=h310-rw)
 
+- View schedules for both semesters, and the current period
+
 ![Bell Schedule](https://lh3.googleusercontent.com/6xQS1smkHI9HcJXEF2zAEXvmojeNdgblKqy6r_yhJ-ebtVTpWetNqaKSaIhOKMXII-4=h310-rw)
 
+- See Attendance data, including the number of tardies and absences in each class
+
 ![Attendence info](https://lh3.googleusercontent.com/xDzjG-s0dQrXfg2w8_2ebIKJKcRPxi4vvR36Mf-ergQrvoN0ANdkhSPUKUHbiwcalg=h310-rw)
+
+
+
 
 Check it out on the [Google Play Store](https://play.google.com/store/apps/details?id=com.cyfalls.sriramhariharan.cyfallsapp2016) 
 
