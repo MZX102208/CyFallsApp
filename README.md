@@ -7,6 +7,7 @@ This app allows students to:
 - Take advantage of a Grade Calculator that has full HAC integration and live updating
 - View schedules for both semesters, and the current period
 - See Attendance data, including the number of tardies and absences in each class
+
 ![Grade Summary](https://lh3.googleusercontent.com/2yED-RzWplDG1vqkoKaY1GJhWxVUDlA4HaoL61Uwv1RBbbFt1cM3ayJhE-7wjEwp6GF8=h310-rw)
 ![Class View](https://lh3.googleusercontent.com/aaxnSYjjOOVbO2U0WQxDF6dlyq1g9-w7BvKw1duXVw4jSm-CnJ6ziD_18S-uR7gz_Q=h310-rw)
 ![Grade Calculator](https://lh3.googleusercontent.com/Z3RsCAi4XmC5aMXN3klBv1EEmQAX3NZbR044mp7yxiT-xMHf0GOQrwgB16XBB7hCU3c=h310-rw)
